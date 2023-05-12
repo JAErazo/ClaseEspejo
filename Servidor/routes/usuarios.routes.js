@@ -1,9 +1,10 @@
 const { Router }= require('express');
 
+const {agregarUsuario, mostrarUsuarios} = require('../controllers/user.controller')
+
 const routerUsuario = Router();
 
-routerUsuario.get('/', (req, res) => {
-    res.send('Hola estudiantes Clase espejo U.Mariana - UNIREMINGTON!')
-  })
+routerUsuario.get('/', agregarUsuario)
+routerUsuario.get('/mensaje', mostrarUsuarios)
 
 module.exports = routerUsuario;
