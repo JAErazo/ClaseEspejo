@@ -46,3 +46,17 @@ const suma=(a, b)=>{
 
 console.log(suma(5,6));
 
+//desestructuracion 
+
+let persona ={
+    'nombre':'Daniel',
+    'apellido':'Arteaga',
+    'celular':'3016889827'
+  }
+  
+  //let nombre=persona.nombre;
+  
+  let {nombre, apellido}=persona
+  
+  console.log(apellido)
+
