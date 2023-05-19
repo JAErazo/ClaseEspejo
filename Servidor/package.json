@@ -9,7 +9,12 @@
   "author": "Daniel Fernando Arteaga",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.14.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "prisma": "^4.14.1"
   }
 }
