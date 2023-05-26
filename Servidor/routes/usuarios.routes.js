@@ -4,7 +4,7 @@ const {agregarUsuario, mostrarUsuarios} = require('../controllers/user.controlle
 
 const routerUsuario = Router();
 
-routerUsuario.get('/', mostrarUsuarios);
-routerUsuario.post('/', agregarUsuario);
+routerUsuario.get('/usuarios/', mostrarUsuarios);
+routerUsuario.post('/usuarios/', agregarUsuario);
 
 module.exports = routerUsuario;
