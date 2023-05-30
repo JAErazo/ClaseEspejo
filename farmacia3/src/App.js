@@ -1,5 +1,8 @@
 import React from "react";
-import {BrowserRouter, Routes, Route, Link, Outlet, redirect, useNavigate, Navigate, useParams} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link, Outlet, useNavigate, Navigate, useParams} from "react-router-dom";
+import {Provider} from 'react-redux';
+import { store } from "./store";
+import SingIn from "./users/SignIn";
 
 let Error404 = () =>{
   return(
@@ -49,24 +52,28 @@ function App() {
   const isAuth = false;
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Principal/>} />
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<Principal/>} />
+          
+          <Route path="login" element={<SingIn/>} />
 
-        <Route path="usuario" element={<UsuarioOutlet/>} >
-          <Route path="add" element={ isAuth ? <Navigate to='/'/>:<NotImplemented/>} />
-          <Route path="edit/:id" element={<EditarUsuario/>} />
-          <Route path="delete" element={<NotImplemented/>} />
-        </Route>
+          <Route path="usuario" element={<UsuarioOutlet/>} >            
+            <Route path="add" element={ isAuth ? <Navigate to='/'/>:<NotImplemented/>} />
+            <Route path="edit/:id" element={<EditarUsuario/>} />
+            <Route path="delete" element={<NotImplemented/>} />
+          </Route>
 
-        <Route path="producto" element={<NotImplemented/>} >
-          <Route path="add" element={<NotImplemented/>} />
-          <Route path="edit" element={<NotImplemented/>} />
-          <Route path="delete" element={<NotImplemented/>} />
-        </Route>
-        
-        <Route path="*" element={<Error404/>} />
+          <Route path="producto" element={<NotImplemented/>} >
+            <Route path="add" element={<NotImplemented/>} />
+            <Route path="edit" element={<NotImplemented/>} />
+            <Route path="delete" element={<NotImplemented/>} />
+          </Route>
+          
+          <Route path="*" element={<Error404/>} />
 
-      </Routes>
+        </Routes>
+      </Provider>
     </BrowserRouter>
   );
 }
