@@ -37,6 +37,22 @@ const mostrarUsuarios = async(req=request, res=response) => {
     })
 }
 
+const login = async(req=request, res=response) => {
+
+    // const usuarios= await prisma.user.findMany()
+    // .catch((e)=>{
+    //     return e.message;
+    // }).finally(async ()=>{
+    //     await prisma.$disconnect()
+    // })
+    const {email, password}=req.body.user;
+
+    res.json({
+        email,
+        password
+    })
+}
+
 const editarUsuarios = (req=request, res=response) => {
     res.json({
         msg: "Nos vemos en la proxima sesion"
@@ -53,5 +69,6 @@ module.exports = {
     agregarUsuario,
     mostrarUsuarios,
     editarUsuarios,
-    eliminarUsuarios
+    eliminarUsuarios,
+    login
 }
