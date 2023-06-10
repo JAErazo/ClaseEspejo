@@ -14,6 +14,7 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   username String
+  password String @default("12345")
   created DateTime @default(now())
   updated DateTime @updatedAt
   persona Personas[]

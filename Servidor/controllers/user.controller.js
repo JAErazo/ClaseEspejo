@@ -5,12 +5,13 @@ const prisma = new PrismaClient();
 
 const agregarUsuario = async(req=request, res=response) => {
 
-    const {email, username} = req.body;
+    const {email, username, password} = req.body;
 
     const result = await prisma.user.create({
         data:{
             email,
-            username
+            username,
+            password
         }
     }).catch((e)=>{
         return e.message;
@@ -39,17 +40,35 @@ const mostrarUsuarios = async(req=request, res=response) => {
 
 const login = async(req=request, res=response) => {
 
-    // const usuarios= await prisma.user.findMany()
-    // .catch((e)=>{
-    //     return e.message;
-    // }).finally(async ()=>{
-    //     await prisma.$disconnect()
-    // })
     const {email, password}=req.body.user;
 
+    const usuario= await prisma.user.findMany({
+        where: {
+            AND: [
+                {
+                    email: email,
+                },
+                {
+                    password: password,
+                }
+            ]
+        },
+      })
+    .catch((e)=>{
+        return e.message;
+    }).finally(async ()=>{
+        await prisma.$disconnect()
+    })
+
+    let respuesta="usuario no existe"
+    if(usuario[0]){
+        
+        respuesta=usuario[0];
+        
+    }
+
     res.json({
-        email,
-        password
+        usuario:respuesta
     })
 }
 
